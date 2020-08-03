@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>dcrlnhub - The hub of all ln channels!</title>
+        <link rel="stylesheet" href="static/style.css">
+    </head>
+    <body>
+        <section class="hero is-dark">
+            <div class="hero-body">
+                <div class="columns">
+                    <div class="column is-12">
+                        <div class="container content">
+                            <h1 class="title">dcrlnhub</h1>
+                            <h3 class="subtitle"> The hub of <em>All</em> ln channels!</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        <div class="content is-medium">
+                            <section class="info-tiles">
+                                <div class="tile is-ancestor has-text-centered">
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child box">
+                                            <p class="title">{{ .ChannelsCount }}</p>
+                                            <p class="subtitle">Channels</p>
+                                        </article>
+                                    </div>
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child box">
+                                            <p class="title">{{ .Capacity }}</p>
+                                            <p class="subtitle">Capacity in atoms</p>
+                                        </article>
+                                    </div>
+                                    <div class="tile is-parent">
+                                        <article class="tile is-child box">
+                                            <p class="title">{{ .Balance }}</p>
+                                            <p class="subtitle">On-chain</p>
+                                        </article>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="box">
+                                <h4 id="let" class="title is-3">Connect with our node!</h4>
+                                <div class="field has-addons">
+                                    <div class="control is-expanded">
+                                        <input class="input is-rounded" type="text" value="{{ .NodeAddr }}" readonly>
+                                    </div>
+                                    <div class="control">
+                                        <a class="button is-primary is-rounded">
+                                            Copy!
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="content is-medium">
+                                    <h1>How it works?</h1>
+                                    <p>Open a channel with our node with more than $5 and we will open another channel with $5 back. <em>Check availability on the on-chain balance</em></p>
+                                    <h2>Donations</h2>
+                                    <p>Make a donation to help our service:</p>
+                                    <ul>
+                                        <li>On-chain donation, to always have the balance to open the channels back.</li>
+                                        <li>Off-chain, to help in in/outband balance.</li>
+                                    </ul>
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <button class="button is-success">
+                                                <span>On-chain</span>
+                                            </button>
+                                        </p>
+                                        <p class="control">
+                                            <button class="button is-link">
+                                                <span>Off-chain</span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <article class="message is-warning">
+                                        <div class="message-body">
+                                            On-chain address: Dsasd324nasD3a42ASddsA.
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                            {{ if gt (len $.ActiveChannels) 0 }}
+                            <h3 class="title is-3">List of active channels:</h3>
+                            <div class="box">
+                                <div class="card-table">
+                                    <div class="content">
+                                        <table class="table is-fullwidth is-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th><strong>PubKey</strong></th>
+                                                    <th><strong>Capacity</strong></th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {{range .ActiveChannels}}
+                                                <tr>
+                                                    <td>{{ .RemotePubkey }}</td>
+                                                    <td>{{ .Capacity }}</td>
+                                                </tr>
+                                                {{end}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ else }}
+                            <h3 class="title is-3">None active channels.</h3>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <section class="section">
+                <div class="columns is-mobile is-centered">
+                    <div class="field is-grouped is-grouped-multiline">
+                        <div class="control">
+                            <div class="tags has-addons"><a class="tag is-link" href="https://decred.org">Decred Developers | 2020</a>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <div class="tags has-addons"><a class="tag is-success" href="https://github.com/fguisso/dcrlnhub">Source code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </footer>
+    </body>
+</html>
